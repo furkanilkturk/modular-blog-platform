@@ -18,18 +18,6 @@ describe('DynamicRenderer', () => {
     expect(screen.getByRole('img', { name: 'An example image' })).toBeInTheDocument()
   })
 
-  it('falls back to UnknownBlock for a known-but-unregistered type', () => {
-    // quiz is a valid block type but isn't registered until Sprint 6.
-    const blocks: Block[] = [
-      { id: 'q1', type: 'quiz', data: { title: '', questions: [] } },
-    ]
-    render(<DynamicRenderer blocks={blocks} />)
-
-    const alert = screen.getByRole('alert')
-    expect(alert).toHaveTextContent('Unknown block type')
-    expect(alert).toHaveTextContent('quiz')
-  })
-
   it('falls back for a completely unknown type without crashing', () => {
     const blocks = [
       { id: 'x1', type: 'mystery', data: {} },

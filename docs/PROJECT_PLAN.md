@@ -147,11 +147,14 @@ Check items off as you go so progress is always visible.
 **Goal:** Prove the registry handles interactive, stateful blocks.
 **DoD:** A Quiz block authored in the editor and *playable* (answer → score) in the read view.
 
-- [ ] Define Quiz block type + schema (questions, options, correct answer)
-- [ ] Quiz `Edit` panel: add/remove questions & options
-- [ ] Quiz `Render` (read view): interactive — select answers, submit, show score
-- [ ] Register as a `kind: "interactive"` block
-- [ ] **Tests:** scoring logic + schema
+- [x] Quiz block type + schema already defined in Sprint 1 (questions, options, correctIndex)
+- [x] Quiz `Edit` panel: add/remove questions, add/remove options, set correct answer (radio)
+- [x] Quiz `Render` (read view): interactive — radio answers, Submit (gated until all answered), score + per-option correct/wrong, Try again
+- [x] `scoreQuiz` pure scoring helper
+- [x] Registered as `kind: 'interactive'`
+- [x] **Tests:** scoreQuiz (3) + interactive render test (answer→submit→score) — 54 total
+- [x] Test infra: polyfilled `getClientRects` (TipTap/jsdom) to clear an unhandled error
+- [x] Verified: typecheck, tests, lint, build all pass
 - [ ] Commit: "feat: interactive quiz block"
 
 ---

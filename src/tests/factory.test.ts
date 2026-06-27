@@ -25,7 +25,7 @@ describe('createBlock', () => {
     expect(other.data.html).toBe('')
   })
 
-  it('throws for a known type that is not registered', () => {
-    expect(() => createBlock('quiz')).toThrow(/unknown type/i)
+  it('throws for an unregistered type', () => {
+    expect(() => createBlock('mystery' as 'text')).toThrow(/unknown type/i)
   })
 })

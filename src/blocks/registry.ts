@@ -4,6 +4,7 @@ import { textBlock } from './text'
 import { imageBlock } from './image'
 import { bannerBlock } from './banner'
 import { quoteBlock } from './quote'
+import { quizBlock } from './quiz'
 
 /**
  * Single source of truth for block "addons". The palette, dynamic renderer,
@@ -11,7 +12,7 @@ import { quoteBlock } from './quote'
  * block = adding it to this list. Types not present here render as UnknownBlock,
  * which is what makes the system forward-compatible.
  */
-const definitions = [textBlock, imageBlock, bannerBlock, quoteBlock]
+const definitions = [textBlock, imageBlock, bannerBlock, quoteBlock, quizBlock]
 
 export const blockRegistry: Partial<Record<BlockType, BlockDefinition>> =
   Object.fromEntries(
