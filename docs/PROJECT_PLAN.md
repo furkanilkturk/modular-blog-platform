@@ -75,16 +75,17 @@ Check items off as you go so progress is always visible.
 **Goal:** Three-panel editor layout with working reorder + undo/redo.
 **DoD:** Can add, select, reorder (drag + keyboard), duplicate, and delete blocks; Cmd/Ctrl+Z/Y works.
 
-- [ ] Build editor store with `zustand` + `immer` + `zundo` (history)
-- [ ] Store API: `addBlock`, `removeBlock`, `reorderBlocks`, `duplicateBlock`, `updateBlockData`, `selectBlock`
-- [ ] Build 3-panel `AdminEditor` layout (left palette / center canvas / right properties)
-- [ ] Left sidebar: block palette generated from the registry
-- [ ] Center canvas: render blocks via the engine, with selection + drag handles
-- [ ] Wire `dnd-kit` sortable for block reorder (mouse + **keyboard sensor**)
-- [ ] Add non-drag fallback (move up/down buttons) for a11y & mobile
-- [ ] Right sidebar: property panel driven by the selected block's registry entry
-- [ ] Undo/redo buttons + keyboard shortcuts
-- [ ] **Tests:** store operations (add/remove/reorder/duplicate/undo/redo)
+- [x] Build editor store with `zustand` + `immer` + `zundo` (history; reference-equality skips no-op entries)
+- [x] Store API: `addBlock`, `removeBlock`, `reorderBlocks`, `duplicateBlock`, `updateBlockData`, `selectBlock` (+ `moveBlock`, `updateTitle`)
+- [x] Build 3-panel `AdminEditor` layout (left palette / center canvas / right properties)
+- [x] Left sidebar: block palette generated from the registry (`blockList`)
+- [x] Center canvas: render blocks via the engine, with selection + per-block hover toolbar
+- [x] Wire `dnd-kit` sortable for block reorder (PointerSensor + **KeyboardSensor**)
+- [x] Add non-drag fallback (move up/down buttons) for a11y & mobile
+- [x] Right sidebar: property panel driven by the selected block's registry `Edit`
+- [x] Undo/redo buttons + keyboard shortcuts (Cmd/Ctrl+Z, Shift+Z / Ctrl+Y)
+- [x] **Tests:** store operations — add/insert/remove/duplicate/reorder/move/update + undo/redo + selection-not-tracked (10 tests)
+- [x] Verified: typecheck, tests (31 total), lint, build all pass
 - [ ] Commit: "feat: editor shell + state"
 
 ---

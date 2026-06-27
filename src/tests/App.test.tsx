@@ -2,11 +2,11 @@ import { render, screen } from '@testing-library/react'
 import App from '@/App'
 
 describe('App', () => {
-  it('renders the sample document title and a block', () => {
+  it('renders the editor shell with the block palette', () => {
     render(<App />)
+    expect(screen.getByLabelText(/post title/i)).toBeInTheDocument()
     expect(
-      screen.getByRole('heading', { name: /react best practices/i }),
+      screen.getByRole('button', { name: /^text$/i }),
     ).toBeInTheDocument()
-    expect(screen.getByText(/reusable blocks/i)).toBeInTheDocument()
   })
 })

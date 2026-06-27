@@ -1,12 +1,6 @@
+import { generateId } from '@/lib/id'
 import { getBlockDefinition } from './registry'
 import type { Block, BlockType } from './types'
-
-function generateId(): string {
-  if (typeof crypto !== 'undefined' && 'randomUUID' in crypto) {
-    return crypto.randomUUID()
-  }
-  return `block_${Date.now()}_${Math.random().toString(36).slice(2)}`
-}
 
 /**
  * Creates a fresh block of the given type using the registry's `defaultData`.
