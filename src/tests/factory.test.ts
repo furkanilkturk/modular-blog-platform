@@ -1,6 +1,5 @@
-import { createBlock } from './factory'
-import { getBlockDefinition } from './registry'
-import type { TextBlock } from './types'
+import { createBlock, getBlockDefinition } from '@/blocks'
+import type { TextBlock } from '@/blocks'
 
 describe('createBlock', () => {
   it('creates a block with an id, type, and default data', () => {

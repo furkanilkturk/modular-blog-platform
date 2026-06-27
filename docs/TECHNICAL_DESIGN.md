@@ -192,8 +192,13 @@ src/
   lib/                   # utils, sanitize, cn
   mocks/                 # MSW handlers + seed data
   routes/                # router config
+  tests/                 # ALL tests live here (setup.ts + *.test.ts(x)), import via @/ alias
   types/  schemas/  assets/
 ```
+
+> **Test convention:** tests are not co-located next to source. They all live in
+> `src/tests/` and import the code under test through the `@/` alias, keeping
+> feature folders (especially `blocks/`) clean.
 
 ---
 

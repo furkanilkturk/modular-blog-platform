@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
-import { DynamicRenderer } from './DynamicRenderer'
-import type { Block } from './types'
+import { DynamicRenderer } from '@/blocks'
+import type { Block } from '@/blocks'
 
 describe('DynamicRenderer', () => {
   it('renders registered block types with their components', () => {

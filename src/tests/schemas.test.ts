@@ -3,8 +3,8 @@ import {
   blogDocumentSchema,
   quizBlockDataSchema,
   textBlockDataSchema,
-} from './schemas'
-import type { BlogDocument } from './types'
+} from '@/blocks'
+import type { BlogDocument } from '@/blocks'
 
 describe('block schemas', () => {
   it('accepts valid text block data', () => {

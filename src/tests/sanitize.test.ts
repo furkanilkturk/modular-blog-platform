@@ -1,4 +1,4 @@
-import { sanitizeHtml } from './sanitize'
+import { sanitizeHtml } from '@/lib/sanitize'
 
 describe('sanitizeHtml', () => {
   it('keeps safe markup', () => {

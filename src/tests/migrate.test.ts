@@ -1,6 +1,5 @@
-import { migrate } from './migrate'
-import { CURRENT_DOCUMENT_VERSION } from './types'
-import type { BlogDocument } from './types'
+import { migrate, CURRENT_DOCUMENT_VERSION } from '@/blocks'
+import type { BlogDocument } from '@/blocks'
 
 const baseDoc: BlogDocument = {
   id: 'doc-1',
