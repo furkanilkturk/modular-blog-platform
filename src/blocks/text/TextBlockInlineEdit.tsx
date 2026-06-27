@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { EditorContent, useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import TextAlign from '@tiptap/extension-text-align'
+import { Color, TextStyle } from '@tiptap/extension-text-style'
 import { Placeholder } from '@tiptap/extensions'
 import { useActiveEditor } from './activeEditor'
 import type { BlockEditProps } from '../definition'
@@ -19,6 +20,8 @@ export function TextBlockInlineEdit({ data, onChange }: BlockEditProps<'text'>) 
   const editor = useEditor({
     extensions: [
       StarterKit,
+      TextStyle,
+      Color,
       TextAlign.configure({ types: ['heading', 'paragraph'] }),
       Placeholder.configure({ placeholder: 'Write something…' }),
     ],

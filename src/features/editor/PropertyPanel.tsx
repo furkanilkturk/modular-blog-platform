@@ -5,7 +5,7 @@ import type { BlockType } from '@/blocks'
 import { useEditorStore } from './store'
 
 /** Right sidebar: renders the selected block's Edit panel from the registry. */
-export function PropertyPanel() {
+export function PropertyPanel({ embedded = false }: { embedded?: boolean }) {
   const selectedId = useEditorStore((s) => s.selectedBlockId)
   const block = useEditorStore(
     (s) => s.document.blocks.find((b) => b.id === selectedId) ?? null,
@@ -46,6 +46,10 @@ export function PropertyPanel() {
         </>
       )
     }
+  }
+
+  if (embedded) {
+    return <div className="overflow-y-auto px-4 pb-4">{content}</div>
   }
 
   return (
