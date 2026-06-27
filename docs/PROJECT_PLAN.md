@@ -164,12 +164,12 @@ Check items off as you go so progress is always visible.
 **Goal:** Production-feel pass.
 **DoD:** Accessible, responsive, performant, lint-clean, meaningful tests green.
 
-- [ ] Accessibility audit: keyboard nav, ARIA, semantic HTML, focus management
-- [ ] Performance: lazy-load blocks (`React.lazy`), code-split routes, memoize where it matters
-- [ ] Empty/error states everywhere
-- [ ] (Optional) Playwright: drag-drop reorder + "add → edit → preview" happy path
-- [ ] README with run instructions, architecture overview, and a screenshot/GIF
-- [ ] Final lint + test pass
+- [x] Accessibility: skip-link + semantic landmarks; aria-labels on icon buttons; keyboard dnd sensor + move up/down fallback; `aria-pressed`/`aria-current` on toggles/selection
+- [x] Performance: lazy block editors (`React.lazy`) + route-level code splitting — TipTap/editor load only on `/admin`; the >500 kB chunk warning is gone
+- [x] Empty/error states: `ErrorBoundary` around routes; list/detail/editor loading + empty + not-found states
+- [~] (Optional) Playwright — skipped; behavior covered by RTL interaction tests
+- [x] README with run instructions, architecture overview, and "add a new block" guide
+- [x] Final lint + test pass (54 tests, typecheck, lint, build)
 - [ ] Commit: "chore: polish + docs"
 
 ---

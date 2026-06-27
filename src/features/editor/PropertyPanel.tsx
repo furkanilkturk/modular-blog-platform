@@ -1,4 +1,4 @@
-import type { ComponentType } from 'react'
+import { Suspense, type ComponentType } from 'react'
 import { getBlockDefinition, UnknownBlock } from '@/blocks'
 import type { BlockEditProps } from '@/blocks'
 import type { BlockType } from '@/blocks'
@@ -34,10 +34,12 @@ export function PropertyPanel({ embedded = false }: { embedded?: boolean }) {
             {definition.label}
           </h2>
           {Edit ? (
-            <Edit
-              data={block.data}
-              onChange={(data) => updateBlockData(block.id, data)}
-            />
+            <Suspense fallback={null}>
+              <Edit
+                data={block.data}
+                onChange={(data) => updateBlockData(block.id, data)}
+              />
+            </Suspense>
           ) : (
             <p className="text-sm text-muted-foreground">
               This block is edited directly on the canvas.

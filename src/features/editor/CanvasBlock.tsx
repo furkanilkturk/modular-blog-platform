@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 import {
@@ -105,10 +106,12 @@ export function CanvasBlock({ block, index, total }: CanvasBlockProps) {
         {!definition ? (
           <UnknownBlock type={block.type} />
         ) : selected && definition.InlineEdit && !isDragging ? (
-          <definition.InlineEdit
-            data={block.data}
-            onChange={(data) => updateBlockData(block.id, data)}
-          />
+          <Suspense fallback={<definition.Render data={block.data} />}>
+            <definition.InlineEdit
+              data={block.data}
+              onChange={(data) => updateBlockData(block.id, data)}
+            />
+          </Suspense>
         ) : (
           <definition.Render data={block.data} />
         )}

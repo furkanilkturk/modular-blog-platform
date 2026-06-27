@@ -7,6 +7,12 @@ import { cn } from '@/lib/utils'
 export function PublicLayout() {
   return (
     <div className="flex min-h-svh flex-col">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-background focus:px-3 focus:py-2 focus:shadow"
+      >
+        Skip to content
+      </a>
       <header className="border-b">
         <div className="mx-auto flex h-14 max-w-4xl items-center justify-between px-4">
           <Link to="/" className="font-semibold tracking-tight">
@@ -21,7 +27,7 @@ export function PublicLayout() {
           </Link>
         </div>
       </header>
-      <main className="mx-auto w-full max-w-4xl flex-1 px-4 py-8">
+      <main id="main" className="mx-auto w-full max-w-4xl flex-1 px-4 py-8">
         <Outlet />
       </main>
       <footer className="border-t">

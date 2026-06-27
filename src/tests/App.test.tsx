@@ -14,20 +14,20 @@ describe('App routing', () => {
   it('renders the blog list at /', async () => {
     renderAt('/')
     expect(
-      screen.getByRole('heading', { name: /the blog/i }),
+      await screen.findByRole('heading', { name: /the blog/i }),
     ).toBeInTheDocument()
     expect(
       await screen.findByText(/designing a modular block architecture/i),
     ).toBeInTheDocument()
   })
 
-  it('renders the editor at /admin', () => {
+  it('renders the editor at /admin', async () => {
     renderAt('/admin')
-    expect(screen.getByLabelText(/post title/i)).toBeInTheDocument()
+    expect(await screen.findByLabelText(/post title/i)).toBeInTheDocument()
   })
 
-  it('shows a 404 for unknown routes', () => {
+  it('shows a 404 for unknown routes', async () => {
     renderAt('/nope')
-    expect(screen.getByText('404')).toBeInTheDocument()
+    expect(await screen.findByText('404')).toBeInTheDocument()
   })
 })

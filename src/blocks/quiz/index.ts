@@ -1,8 +1,12 @@
+import { lazy } from 'react'
 import { ListChecks } from 'lucide-react'
 import { defineBlock } from '../definition'
 import { quizBlockDataSchema } from '../schemas'
-import { QuizBlockEdit } from './QuizBlockEdit'
 import { QuizBlockRender } from './QuizBlockRender'
+
+const QuizBlockEdit = lazy(() =>
+  import('./QuizBlockEdit').then((m) => ({ default: m.QuizBlockEdit })),
+)
 
 export const quizBlock = defineBlock({
   type: 'quiz',
