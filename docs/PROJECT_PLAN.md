@@ -113,12 +113,14 @@ Check items off as you go so progress is always visible.
 **Goal:** The reader experience.
 **DoD:** Listing page with search/filter/pagination; detail page renders a document via the engine.
 
-- [ ] Routing: `/` (list), `/blog/:id` (detail), `/admin` (editor)
-- [ ] Blog Listing page: cards, featured, search, category filter, pagination
-- [ ] Blog Detail page: render `BlogDocument` via `DynamicRenderer`
-- [ ] Loading states with `Skeleton`
-- [ ] Responsive layouts (mobile/tablet/desktop)
-- [ ] **Tests:** list filtering/search logic
+- [x] Routing: `/` (list), `/blog/:slug` (detail), `/admin` (editor), `*` (404); `PublicLayout` chrome for reader pages
+- [x] Blog Listing page: cards, featured hero, search, category chips, pagination (4/page)
+- [x] Blog Detail page: cover + meta header, renders blocks via `DynamicRenderer`, not-found handling
+- [x] Loading states with `Skeleton` (async-shaped `usePosts`/`usePost` hooks over fixtures)
+- [x] Responsive layouts (mobile/tablet/desktop)
+- [x] Pure `filter.ts` (filter/featured/categories/paginate) driving the list; fixtures in `data.ts`
+- [x] **Tests:** filter/search/featured/categories/paginate (13) + routing render tests (3) — 44 total
+- [x] Verified: typecheck, tests, lint, build all pass
 - [ ] Commit: "feat: blog list + detail"
 
 ---
