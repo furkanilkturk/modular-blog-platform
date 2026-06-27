@@ -24,6 +24,7 @@ export function CanvasBlock({ block, index, total }: CanvasBlockProps) {
   const removeBlock = useEditorStore((s) => s.removeBlock)
   const duplicateBlock = useEditorStore((s) => s.duplicateBlock)
   const moveBlock = useEditorStore((s) => s.moveBlock)
+  const updateBlockData = useEditorStore((s) => s.updateBlockData)
 
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } =
     useSortable({ id: block.id })
@@ -101,10 +102,15 @@ export function CanvasBlock({ block, index, total }: CanvasBlockProps) {
       </div>
 
       <div className="p-4">
-        {definition ? (
-          <definition.Render data={block.data} />
-        ) : (
+        {!definition ? (
           <UnknownBlock type={block.type} />
+        ) : selected && definition.InlineEdit ? (
+          <definition.InlineEdit
+            data={block.data}
+            onChange={(data) => updateBlockData(block.id, data)}
+          />
+        ) : (
+          <definition.Render data={block.data} />
         )}
       </div>
     </div>

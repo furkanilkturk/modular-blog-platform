@@ -6,7 +6,7 @@ describe('createBlock', () => {
     const block = createBlock('text') as TextBlock
     expect(block.type).toBe('text')
     expect(block.id).toBeTruthy()
-    expect(block.data).toEqual({ html: '', align: 'left' })
+    expect(block.data).toEqual({ html: '' })
   })
 
   it('generates a unique id per block', () => {

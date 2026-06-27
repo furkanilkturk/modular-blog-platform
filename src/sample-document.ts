@@ -1,6 +1,6 @@
 import type { BlogDocument } from '@/blocks'
 
-/** Temporary seed used to demo the engine until the mock API lands (Sprint 5). */
+/** Temporary seed used to demo the reader view until the mock API lands (Sprint 5). */
 export const sampleDocument: BlogDocument = {
   id: 'sample-1',
   version: 1,
@@ -12,7 +12,6 @@ export const sampleDocument: BlogDocument = {
       type: 'text',
       data: {
         html: '<h2>Welcome</h2><p>This page is assembled from <strong>reusable blocks</strong> rendered dynamically by the engine.</p>',
-        align: 'left',
       },
     },
     {
@@ -26,17 +25,8 @@ export const sampleDocument: BlogDocument = {
     },
     {
       id: 'b3',
-      type: 'text',
-      data: {
-        html: '<p>Add a block type by dropping a folder and registering it — that single registry is the addon API.</p>',
-        align: 'center',
-      },
-    },
-    {
-      // A known type that isn't registered yet → renders the UnknownBlock fallback.
-      id: 'b4',
-      type: 'banner',
-      data: { image: '', buttonText: 'Subscribe', link: '#', background: '' },
+      type: 'quote',
+      data: { text: 'Everything is a block.', attribution: 'The architecture' },
     },
   ],
 }

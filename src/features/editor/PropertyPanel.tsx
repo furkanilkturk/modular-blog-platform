@@ -25,16 +25,24 @@ export function PropertyPanel() {
       content = <UnknownBlock type={block.type} />
     } else {
       // Dispatch boundary: the selected block guarantees the data matches this Edit.
-      const Edit = definition.Edit as ComponentType<BlockEditProps<BlockType>>
+      const Edit = definition.Edit as
+        | ComponentType<BlockEditProps<BlockType>>
+        | undefined
       content = (
         <>
           <h2 className="mb-3 text-xs font-medium uppercase tracking-wide text-muted-foreground">
             {definition.label}
           </h2>
-          <Edit
-            data={block.data}
-            onChange={(data) => updateBlockData(block.id, data)}
-          />
+          {Edit ? (
+            <Edit
+              data={block.data}
+              onChange={(data) => updateBlockData(block.id, data)}
+            />
+          ) : (
+            <p className="text-sm text-muted-foreground">
+              This block is edited directly on the canvas.
+            </p>
+          )}
         </>
       )
     }

@@ -13,11 +13,8 @@ import type {
  * its TypeScript interface via `satisfies`, so the two can't silently drift.
  */
 
-export const alignSchema = z.enum(['left', 'center', 'right'])
-
 export const textBlockDataSchema = z.object({
   html: z.string(),
-  align: alignSchema,
 }) satisfies z.ZodType<TextBlockData>
 
 export const imageBlockDataSchema = z.object({

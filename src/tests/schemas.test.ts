@@ -8,14 +8,11 @@ import type { BlogDocument } from '@/blocks'
 
 describe('block schemas', () => {
   it('accepts valid text block data', () => {
-    expect(
-      textBlockDataSchema.safeParse({ html: '<p>hi</p>', align: 'center' }).success,
-    ).toBe(true)
+    expect(textBlockDataSchema.safeParse({ html: '<p>hi</p>' }).success).toBe(true)
   })
 
-  it('rejects an invalid alignment', () => {
-    const result = textBlockDataSchema.safeParse({ html: '', align: 'sideways' })
-    expect(result.success).toBe(false)
+  it('rejects text data missing html', () => {
+    expect(textBlockDataSchema.safeParse({}).success).toBe(false)
   })
 
   it('requires at least two options per quiz question', () => {
@@ -24,6 +21,23 @@ describe('block schemas', () => {
       questions: [{ id: 'q1', prompt: '?', options: ['only one'], correctIndex: 0 }],
     })
     expect(result.success).toBe(false)
+  })
+
+  it('accepts valid banner and quote data', () => {
+    expect(
+      blockSchema.safeParse({
+        id: 'bn',
+        type: 'banner',
+        data: { image: '', buttonText: 'Go', link: '#' },
+      }).success,
+    ).toBe(true)
+    expect(
+      blockSchema.safeParse({
+        id: 'qt',
+        type: 'quote',
+        data: { text: 'Hi' },
+      }).success,
+    ).toBe(true)
   })
 
   it('discriminates blocks by type', () => {
@@ -51,7 +65,7 @@ describe('blogDocumentSchema', () => {
     version: 1,
     title: 'Hello',
     status: 'draft',
-    blocks: [{ id: 't1', type: 'text', data: { html: '', align: 'left' } }],
+    blocks: [{ id: 't1', type: 'text', data: { html: '' } }],
   }
 
   it('accepts a well-formed document', () => {

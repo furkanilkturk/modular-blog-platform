@@ -5,7 +5,7 @@ import type { Block } from '@/blocks'
 describe('DynamicRenderer', () => {
   it('renders registered block types with their components', () => {
     const blocks: Block[] = [
-      { id: 't1', type: 'text', data: { html: '<p>Hello world</p>', align: 'left' } },
+      { id: 't1', type: 'text', data: { html: '<p>Hello world</p>' } },
       {
         id: 'i1',
         type: 'image',
@@ -19,14 +19,15 @@ describe('DynamicRenderer', () => {
   })
 
   it('falls back to UnknownBlock for a known-but-unregistered type', () => {
+    // quiz is a valid block type but isn't registered until Sprint 6.
     const blocks: Block[] = [
-      { id: 'b1', type: 'banner', data: { image: '', buttonText: '', link: '' } },
+      { id: 'q1', type: 'quiz', data: { title: '', questions: [] } },
     ]
     render(<DynamicRenderer blocks={blocks} />)
 
     const alert = screen.getByRole('alert')
     expect(alert).toHaveTextContent('Unknown block type')
-    expect(alert).toHaveTextContent('banner')
+    expect(alert).toHaveTextContent('quiz')
   })
 
   it('falls back for a completely unknown type without crashing', () => {

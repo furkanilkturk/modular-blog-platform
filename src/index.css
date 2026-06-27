@@ -128,3 +128,33 @@
     @apply font-sans;
     }
 }
+
+/* Shared typography for both the TipTap editor and the rendered read view. */
+.tiptap-content h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 0 0 0.5rem;
+}
+.tiptap-content p {
+  margin: 0 0 0.5rem;
+}
+.tiptap-content a {
+  color: var(--primary);
+  text-decoration: underline;
+}
+.tiptap-content ul,
+.tiptap-content ol {
+  margin: 0 0 0.5rem;
+  padding-left: 1.5rem;
+  list-style: revert;
+}
+
+/* TipTap empty-state placeholder. */
+.tiptap-content p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  color: var(--muted-foreground);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}

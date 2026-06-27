@@ -95,13 +95,15 @@ Check items off as you go so progress is always visible.
 **Goal:** Implement the static content blocks end-to-end (palette → edit → render).
 **DoD:** Text, Image, Banner, Quote each: appear in palette, edit via panel, render in canvas & read view.
 
-- [ ] **Text block** — TipTap instance mounted only when focused; stores sanitized HTML
-- [ ] Text read-view component renders sanitized HTML (no TipTap)
-- [ ] **Image block** — upload via `createObjectURL`, alt text, caption; placeholder seed support
-- [ ] **Banner block** — image, button text, link, background
-- [ ] **Quote block** — quote text + attribution
-- [ ] Each block: registry entry, Zod schema, `Edit` (property panel), `Render`
-- [ ] **Tests:** each block's schema + render
+- [x] Editing model: added optional `InlineEdit` (canvas) + `Edit` (panel) to `BlockDefinition` — content is edited in place, not in the sidebar
+- [x] **Text block** — inline TipTap (StarterKit + TextAlign + Placeholder) with a floating **bubble toolbar** (bold/italic/H2/align/link); mounted only while selected; alignment stored in HTML
+- [x] Text read-view renders sanitized HTML (no TipTap); shared `.tiptap-content` typography
+- [x] **Image block** — `createObjectURL` upload (shared `ImageUploadField`) + alt + caption; placeholder render when empty
+- [x] **Banner block** — background image upload, button text, link
+- [x] **Quote block** — inline-editable quote text + attribution
+- [x] Each block: registry entry, Zod schema, `Render` + (`InlineEdit` and/or `Edit`)
+- [x] **Tests:** schemas (text/banner/quote), renderer, + inline TipTap mount smoke test (33 total)
+- [x] Verified: typecheck, tests, lint, build all pass
 - [ ] Commit: "feat: static blocks (text/image/banner/quote)"
 
 ---

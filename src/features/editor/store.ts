@@ -40,8 +40,7 @@ function createSeedDocument(): BlogDocument {
         id: generateId(),
         type: 'text',
         data: {
-          html: '<h2>New post</h2><p>Start writing, or add blocks from the left.</p>',
-          align: 'left',
+          html: '<h2>New post</h2><p>Click here to edit this text inline, or add blocks from the left.</p>',
         },
       },
       {

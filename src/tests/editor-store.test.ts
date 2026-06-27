@@ -42,13 +42,13 @@ describe('editor store: block operations', () => {
   it('duplicates a block with a new id and an independent copy', () => {
     get().addBlock('text')
     const original = get().document.blocks[0] as TextBlock
-    get().updateBlockData(original.id, { html: 'hello', align: 'left' })
+    get().updateBlockData(original.id, { html: 'hello' })
     get().duplicateBlock(original.id)
 
     const blocks = get().document.blocks
     expect(blocks).toHaveLength(2)
     expect(blocks[1].id).not.toBe(blocks[0].id)
-    expect((blocks[1] as TextBlock).data).toEqual({ html: 'hello', align: 'left' })
+    expect((blocks[1] as TextBlock).data).toEqual({ html: 'hello' })
     expect(blocks[1].data).not.toBe(blocks[0].data)
   })
 

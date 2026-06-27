@@ -4,8 +4,6 @@
  * extending this union, adding a schema (schemas.ts) and a registry entry.
  */
 
-export type Align = 'left' | 'center' | 'right'
-
 export interface BaseBlock<TType extends string, TData> {
   id: string
   type: TType
@@ -15,8 +13,8 @@ export interface BaseBlock<TType extends string, TData> {
 // --- Block data shapes -----------------------------------------------------
 
 export interface TextBlockData {
+  /** Rich HTML from the inline editor; alignment is encoded here per-paragraph. */
   html: string
-  align: Align
 }
 
 export interface ImageBlockData {

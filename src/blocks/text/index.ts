@@ -1,7 +1,7 @@
 import { Type } from 'lucide-react'
 import { defineBlock } from '../definition'
 import { textBlockDataSchema } from '../schemas'
-import { TextBlockEdit } from './TextBlockEdit'
+import { TextBlockInlineEdit } from './TextBlockInlineEdit'
 import { TextBlockRender } from './TextBlockRender'
 
 export const textBlock = defineBlock({
@@ -10,7 +10,8 @@ export const textBlock = defineBlock({
   icon: Type,
   kind: 'static',
   schema: textBlockDataSchema,
-  defaultData: { html: '', align: 'left' },
-  Edit: TextBlockEdit,
+  defaultData: { html: '' },
   Render: TextBlockRender,
+  // Text is edited in place on the canvas; no right-panel config.
+  InlineEdit: TextBlockInlineEdit,
 })

@@ -119,6 +119,31 @@ export function DynamicRenderer({ blocks }: { blocks: Block[] }) {
 
 ---
 
+## 3a. Editing model — inline vs. config (Notion + Webflow)
+
+Content is **not** typed in the right panel. A block definition can expose two
+optional editing surfaces, and provides whichever make sense:
+
+- **`InlineEdit`** — in-place editing on the canvas while the block is selected
+  (the Notion experience). Text uses a focused TipTap instance with a floating
+  bubble toolbar; Quote uses inline text fields.
+- **`Edit`** — right-panel config for properties that don't belong inline
+  (the Webflow experience). Image uses it for upload/alt/caption; Banner for
+  upload/button/link.
+
+| Block  | InlineEdit (canvas)        | Edit (right panel)          |
+|--------|----------------------------|-----------------------------|
+| text   | TipTap + bubble toolbar    | —                           |
+| quote  | inline text + attribution  | —                           |
+| image  | —                          | upload, alt, caption        |
+| banner | —                          | upload, button text, link   |
+
+`CanvasBlock` renders `InlineEdit` when the block is selected (else `Render`).
+`PropertyPanel` renders `Edit` if present, otherwise "edited on the canvas".
+
+Text alignment is stored **in the HTML** (TipTap TextAlign, per paragraph), so
+there is no block-level `align` field.
+
 ## 4. TipTap Pattern — per focused text block
 
 **Decision:** one TipTap instance per text block, mounted **only while that block is
