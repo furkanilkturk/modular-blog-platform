@@ -54,15 +54,18 @@ Check items off as you go so progress is always visible.
 **Goal:** The keystone. Types + registry + dynamic renderer, fully tested, no UI polish.
 **DoD:** Given a `BlogDocument`, the renderer renders the correct components and falls back gracefully on unknown types. 100% of this is unit-tested.
 
-- [ ] Define `Block` discriminated union + `BlogDocument` (with `version`) in `src/blocks/types.ts`
-- [ ] Define Zod schemas per block; combine into a discriminated-union document schema
-- [ ] Define the `BlockRegistry` interface (`label`, `icon`, `schema`, `defaultData`, `Render`, `Edit`, `kind`)
-- [ ] Implement the registry object (start with `text`, `image` entries)
-- [ ] Implement `<DynamicRenderer blocks={...} />` reading the registry, keyed by `block.id`
-- [ ] Implement `<UnknownBlock />` fallback
-- [ ] Implement a `createBlock(type)` factory using `defaultData`
-- [ ] Implement a `migrate(document)` stub keyed off `version`
-- [ ] **Tests:** renderer maps type→component, unknown-type fallback, factory defaults, schema validation pass/fail
+- [x] Define `Block` discriminated union + `BlogDocument` (with `version`) in `src/blocks/types.ts`
+- [x] Define Zod schemas per block; combine into a discriminated-union document schema (`schemas.ts`, `satisfies`-checked against the TS types)
+- [x] Define the `BlockDefinition` interface + `defineBlock()` authoring helper (`definition.ts`)
+- [x] Implement the registry object (`text`, `image` entries) with `getBlockDefinition` + `blockList`
+- [x] Implement `<DynamicRenderer blocks={...} />` reading the registry, keyed by `block.id`, `data` passed as one typed prop
+- [x] Implement `<UnknownBlock />` fallback
+- [x] Implement a `createBlock(type)` factory using `defaultData` (deep-cloned, throws on unknown)
+- [x] Implement a `migrate(document)` stub keyed off `version`
+- [x] Add `sanitizeHtml()` (DOMPurify) for text-block HTML
+- [x] **Tests:** renderer maps type→component + unknown/unregistered fallback, factory defaults/clone/throw, schema pass/fail, migrate, sanitize (22 tests)
+- [x] Wire a temporary sample document into `App.tsx` to visibly prove the engine
+- [x] Verified: typecheck, tests, lint, build all pass
 - [ ] Commit: "feat: block engine core"
 
 ---

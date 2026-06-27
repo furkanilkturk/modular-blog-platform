@@ -1,17 +1,18 @@
-import { Button } from '@/components/ui/button'
+import { DynamicRenderer } from '@/blocks'
+import { sampleDocument } from '@/sample-document'
 
 function App() {
   return (
-    <main className="min-h-svh flex flex-col items-center justify-center gap-6 p-8">
-      <div className="text-center space-y-2">
+    <main className="mx-auto max-w-2xl px-6 py-12">
+      <header className="mb-8 border-b pb-4">
+        <p className="text-sm text-muted-foreground">Modular Blog Platform</p>
         <h1 className="text-3xl font-semibold tracking-tight">
-          Modular Blog Platform
+          {sampleDocument.title}
         </h1>
-        <p className="text-muted-foreground">
-          Toolchain ready — block engine coming in Sprint 1.
-        </p>
-      </div>
-      <Button>It works</Button>
+      </header>
+      <article className="space-y-6">
+        <DynamicRenderer blocks={sampleDocument.blocks} />
+      </article>
     </main>
   )
 }
