@@ -1,3 +1,4 @@
+import { safeUrl } from '@/lib/url'
 import type { BannerBlockData } from '../types'
 
 export function BannerBlockRender({ data }: { data: BannerBlockData }) {
@@ -12,7 +13,7 @@ export function BannerBlockRender({ data }: { data: BannerBlockData }) {
     >
       {data.buttonText ? (
         <a
-          href={data.link || '#'}
+          href={safeUrl(data.link)}
           className="inline-flex items-center rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground shadow-sm hover:bg-primary/90"
         >
           {data.buttonText}
