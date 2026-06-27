@@ -2,11 +2,8 @@ import { generateId } from '@/lib/id'
 import { getBlockDefinition } from './registry'
 import type { Block, BlockType } from './types'
 
-/**
- * Creates a fresh block of the given type using the registry's `defaultData`.
- * Deep-clones the defaults so blocks never share nested references.
- * Throws for types that aren't registered.
- */
+// Creates a block from the registry's defaultData (deep-cloned so blocks don't
+// share nested references). Throws for unregistered types.
 export function createBlock(type: BlockType): Block {
   const definition = getBlockDefinition(type)
   if (!definition) {

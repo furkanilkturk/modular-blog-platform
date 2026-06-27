@@ -7,13 +7,9 @@ import { Placeholder } from '@tiptap/extensions'
 import { useActiveEditor } from './activeEditor'
 import type { BlockEditProps } from '../definition'
 
-/**
- * In-place rich-text editing (the Notion experience). A TipTap instance is
- * mounted only while the block is selected on the canvas; on deselect it
- * unmounts and the static TextBlockRender takes over. The editor registers
- * itself as the active editor so the right panel can format it. Alignment is
- * stored in the HTML via TextAlign, so there is no block-level align field.
- */
+// Mounts a TipTap editor only while the block is selected; otherwise the static
+// TextBlockRender shows. Registers itself so the right panel can format it.
+// Alignment is stored in the HTML (TextAlign), so there's no align field.
 export function TextBlockInlineEdit({ data, onChange }: BlockEditProps<'text'>) {
   const setActiveEditor = useActiveEditor((s) => s.setEditor)
 

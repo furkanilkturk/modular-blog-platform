@@ -3,7 +3,6 @@ import type { BlogDocument } from '@/blocks'
 
 const KEY = 'modular-blog:draft'
 
-/** Persists the in-progress new-post document for crash protection. */
 export function saveLocalDraft(document: BlogDocument): void {
   try {
     localStorage.setItem(KEY, JSON.stringify(document))

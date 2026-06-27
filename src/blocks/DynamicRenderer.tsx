@@ -2,11 +2,8 @@ import { getBlockDefinition } from './registry'
 import { UnknownBlock } from './UnknownBlock'
 import type { Block } from './types'
 
-/**
- * Renders a list of blocks by looking each one up in the registry. Dispatch is
- * keyed by `block.id`; unknown/unregistered types fall back to UnknownBlock.
- * `data` is passed as one typed prop — never spread — so each block owns its shape.
- */
+// Looks each block up in the registry and renders its Render component, keyed by
+// id. Unknown types fall back to UnknownBlock. data is passed as one typed prop.
 export function DynamicRenderer({ blocks }: { blocks: Block[] }) {
   return (
     <>

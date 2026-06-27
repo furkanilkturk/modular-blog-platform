@@ -52,7 +52,7 @@ evolve. `migrate(doc)` is a switch on `doc.version` that upgrades old content.
 
 ---
 
-## 2. The Block Registry — single source of truth ("addon API")
+## 2. The Block Registry - single source of truth ("addon API")
 
 The sidebar palette, the dynamic renderer, the property panel, validation, and defaults
 all read from ONE registry. Adding a block = adding one entry. This delivers the
@@ -89,7 +89,7 @@ export const blockList = Object.values(blockRegistry); // for the palette
 ```
 
 > Each block lives in its own folder (`src/blocks/text/`, etc.) exporting its
-> `BlockDefinition`. The registry just imports and assembles them — co-location keeps
+> `BlockDefinition`. The registry just imports and assembles them - co-location keeps
 > each addon self-contained.
 
 ---
@@ -114,29 +114,29 @@ export function DynamicRenderer({ blocks }: { blocks: Block[] }) {
 }
 ```
 
-- **Never** `{...block.data}` spread — pass `data` as one typed prop.
+- **Never** `{...block.data}` spread - pass `data` as one typed prop.
 - `UnknownBlock` renders a small placeholder instead of crashing.
 
 ---
 
-## 3a. Editing model — inline vs. config (Notion + Webflow)
+## 3a. Editing model - inline vs. config (Notion + Webflow)
 
 Content is **typed in place on the canvas**; the right panel holds the controls.
 A block definition can expose two optional editing surfaces:
 
-- **`InlineEdit`** — in-place editing on the canvas while the block is selected
+- **`InlineEdit`** - in-place editing on the canvas while the block is selected
   (the Notion experience: you type where the content lives). Text mounts a
   focused TipTap instance; Quote uses inline text fields.
-- **`Edit`** — right-panel controls. For text this is the **formatting toolbar**
-  (bold/italic/H2/align/link), always visible while a text block is selected —
+- **`Edit`** - right-panel controls. For text this is the **formatting toolbar**
+  (bold/italic/H2/align/link), always visible while a text block is selected -
   no floating bubble. For image/banner it's config (upload, alt, link).
 
 | Block  | InlineEdit (canvas, typing) | Edit (right panel)            |
 |--------|-----------------------------|-------------------------------|
 | text   | TipTap (type inline)        | formatting toolbar            |
-| quote  | inline text + attribution   | —                             |
-| image  | —                           | upload, alt, caption          |
-| banner | —                           | upload, button text, link     |
+| quote  | inline text + attribution   | -                             |
+| image  | -                           | upload, alt, caption          |
+| banner | -                           | upload, button text, link     |
 
 The text formatting toolbar drives the editor via a tiny `useActiveEditor`
 store: `TextBlockInlineEdit` registers its TipTap instance on mount; the
@@ -150,7 +150,7 @@ its toolbar). `PropertyPanel` renders `Edit` if present.
 Text alignment is stored **in the HTML** (TipTap TextAlign, per paragraph), so
 there is no block-level `align` field.
 
-## 4. TipTap Pattern — per focused text block
+## 4. TipTap Pattern - per focused text block
 
 **Decision:** one TipTap instance per text block, mounted **only while that block is
 focused/selected**. Read view never mounts TipTap.
@@ -163,7 +163,7 @@ Editor canvas:
   - unselected text block → render sanitized data.html (static)
 
 Read view (blog detail):
-  - always render sanitized data.html  (DOMPurify) — no TipTap
+  - always render sanitized data.html  (DOMPurify) - no TipTap
 ```
 
 This keeps at most ~1 live editor instance at a time (no dozens-of-instances perf hit),
@@ -172,7 +172,7 @@ rich text within a single block. Always sanitize `html` with DOMPurify before re
 
 ---
 
-## 5. Editor State — immutable + undo/redo
+## 5. Editor State - immutable + undo/redo
 
 `zustand` + `immer` for ergonomic immutable updates + `zundo` for history. Designing for
 undo/redo now avoids a painful retrofit later.
@@ -197,7 +197,7 @@ interface EditorState {
 ## 6. Images (mock strategy)
 
 - **Uploads:** `const src = URL.createObjectURL(file)` → store in `data.src`. Instant,
-  no infra. (Object URLs are lost on refresh — acceptable for a demo.)
+  no infra. (Object URLs are lost on refresh - acceptable for a demo.)
 - **Seed content:** bundled assets in `src/assets` or `https://picsum.photos/seed/<id>/800/400`.
 - **Optional later:** IndexedDB for refresh-persistent uploaded blobs (no localStorage quota issue).
 

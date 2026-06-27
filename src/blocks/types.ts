@@ -1,8 +1,5 @@
-/**
- * The block model is the architecture: every page is a `BlogDocument` whose
- * `blocks` are a discriminated union keyed by `type`. Adding a block type means
- * extending this union, adding a schema (schemas.ts) and a registry entry.
- */
+// Every page is a BlogDocument whose blocks are a discriminated union keyed by
+// `type`. A new block type means: extend this union, add a schema, register it.
 
 export interface BaseBlock<TType extends string, TData> {
   id: string

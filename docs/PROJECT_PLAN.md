@@ -1,4 +1,4 @@
-# Modular Blog Platform — Project Plan
+# Modular Blog Platform - Project Plan
 
 A sprint-based, checkbox-driven plan for building the Modular Blog Platform case study.
 Work top-to-bottom. Each sprint has a **Goal**, **Definition of Done (DoD)**, and tasks.
@@ -17,13 +17,13 @@ Check items off as you go so progress is always visible.
 - [x] **TipTap = one instance per *focused* text block.** Read view renders sanitized HTML, never mounts TipTap.
 - [x] **Editor state** is immutable + history-backed (undo/redo) from day one.
 - [x] **Images** = `URL.createObjectURL` for uploads + placeholder seeds. No DB. IndexedDB is optional later.
-- [x] **No SEO/SSR** — client-side SPA is acceptable for this case study.
+- [x] **No SEO/SSR** - client-side SPA is acceptable for this case study.
 - [x] **Tests**: Vitest + React Testing Library on engine/store; optional Playwright for drag-drop flow.
 - [x] **Interactive block proof**: ship one **Quiz** block in v1 to prove addons can be interactive.
 
 ---
 
-## Sprint 0 — Foundations & Setup
+## Sprint 0 - Foundations & Setup
 
 **Goal:** A running app shell with the full toolchain wired up.
 **DoD:** `npm run dev` serves a styled page; `npm run test` and lint pass on an empty suite.
@@ -31,7 +31,7 @@ Check items off as you go so progress is always visible.
 - [x] Scaffold Vite + React + TypeScript (React 19, Vite 8, TS 6)
 - [x] Configure path alias `@/` → `src/`
 - [x] Install & configure Tailwind CSS (v4 via `@tailwindcss/vite`)
-- [x] Init shadcn/ui and add components (`--all` — 60 components, neutral base)
+- [x] Init shadcn/ui and add components (`--all` - 60 components, neutral base)
 - [x] Install state/data libs: `zustand`, `zundo` (undo/redo), `immer`
 - [x] Install routing: `react-router-dom`
 - [x] Install forms/validation: `react-hook-form`, `zod`, `@hookform/resolvers`
@@ -40,16 +40,16 @@ Check items off as you go so progress is always visible.
 - [x] Install sanitizer: `dompurify` (ships its own types in v3)
 - [x] Install mock API: `msw` (dev) and init worker (`public/mockServiceWorker.js`)
 - [x] Install testing: `vitest`, `@testing-library/react`, `@testing-library/jest-dom`, `jsdom`, `@vitest/coverage-v8`
-- [ ] (Optional) Install `@playwright/test` — deferred to Sprint 7
+- [ ] (Optional) Install `@playwright/test` - deferred to Sprint 7
 - [x] Linting/formatting: `oxlint` (ships with the Vite template; ignores vendored `ui/`)
-- [~] Create folder structure (feature-based) — created as each sprint needs it
+- [~] Create folder structure (feature-based) - created as each sprint needs it
 - [x] Add npm scripts: `dev`, `build`, `preview`, `test`, `test:run`, `test:coverage`, `typecheck`, `lint`
 - [x] Verified: `build`, `test:run`, and `lint` all pass on the scaffold
-- [ ] Commit: "chore: project scaffold" — pending `git init` (not yet a repo)
+- [ ] Commit: "chore: project scaffold" - pending `git init` (not yet a repo)
 
 ---
 
-## Sprint 1 — Block Engine Core
+## Sprint 1 - Block Engine Core
 
 **Goal:** The keystone. Types + registry + dynamic renderer, fully tested, no UI polish.
 **DoD:** Given a `BlogDocument`, the renderer renders the correct components and falls back gracefully on unknown types. 100% of this is unit-tested.
@@ -70,7 +70,7 @@ Check items off as you go so progress is always visible.
 
 ---
 
-## Sprint 2 — Editor Shell & State
+## Sprint 2 - Editor Shell & State
 
 **Goal:** Three-panel editor layout with working reorder + undo/redo.
 **DoD:** Can add, select, reorder (drag + keyboard), duplicate, and delete blocks; Cmd/Ctrl+Z/Y works.
@@ -84,23 +84,23 @@ Check items off as you go so progress is always visible.
 - [x] Add non-drag fallback (move up/down buttons) for a11y & mobile
 - [x] Right sidebar: property panel driven by the selected block's registry `Edit`
 - [x] Undo/redo buttons + keyboard shortcuts (Cmd/Ctrl+Z, Shift+Z / Ctrl+Y)
-- [x] **Tests:** store operations — add/insert/remove/duplicate/reorder/move/update + undo/redo + selection-not-tracked (10 tests)
+- [x] **Tests:** store operations - add/insert/remove/duplicate/reorder/move/update + undo/redo + selection-not-tracked (10 tests)
 - [x] Verified: typecheck, tests (31 total), lint, build all pass
 - [ ] Commit: "feat: editor shell + state"
 
 ---
 
-## Sprint 3 — Static Blocks
+## Sprint 3 - Static Blocks
 
 **Goal:** Implement the static content blocks end-to-end (palette → edit → render).
 **DoD:** Text, Image, Banner, Quote each: appear in palette, edit via panel, render in canvas & read view.
 
-- [x] Editing model: added optional `InlineEdit` (canvas) + `Edit` (panel) to `BlockDefinition` — content is edited in place, not in the sidebar
-- [x] **Text block** — inline TipTap (StarterKit + TextAlign + Placeholder) with a floating **bubble toolbar** (bold/italic/H2/align/link); mounted only while selected; alignment stored in HTML
+- [x] Editing model: added optional `InlineEdit` (canvas) + `Edit` (panel) to `BlockDefinition` - content is edited in place, not in the sidebar
+- [x] **Text block** - inline TipTap (StarterKit + TextAlign + Placeholder) with a floating **bubble toolbar** (bold/italic/H2/align/link); mounted only while selected; alignment stored in HTML
 - [x] Text read-view renders sanitized HTML (no TipTap); shared `.tiptap-content` typography
-- [x] **Image block** — `createObjectURL` upload (shared `ImageUploadField`) + alt + caption; placeholder render when empty
-- [x] **Banner block** — background image upload, button text, link
-- [x] **Quote block** — inline-editable quote text + attribution
+- [x] **Image block** - `createObjectURL` upload (shared `ImageUploadField`) + alt + caption; placeholder render when empty
+- [x] **Banner block** - background image upload, button text, link
+- [x] **Quote block** - inline-editable quote text + attribution
 - [x] Each block: registry entry, Zod schema, `Render` + (`InlineEdit` and/or `Edit`)
 - [x] **Tests:** schemas (text/banner/quote), renderer, + inline TipTap mount smoke test (33 total)
 - [x] Verified: typecheck, tests, lint, build all pass
@@ -108,7 +108,7 @@ Check items off as you go so progress is always visible.
 
 ---
 
-## Sprint 4 — Read Side (Blog List + Detail)
+## Sprint 4 - Read Side (Blog List + Detail)
 
 **Goal:** The reader experience.
 **DoD:** Listing page with search/filter/pagination; detail page renders a document via the engine.
@@ -119,13 +119,13 @@ Check items off as you go so progress is always visible.
 - [x] Loading states with `Skeleton` (async-shaped `usePosts`/`usePost` hooks over fixtures)
 - [x] Responsive layouts (mobile/tablet/desktop)
 - [x] Pure `filter.ts` (filter/featured/categories/paginate) driving the list; fixtures in `data.ts`
-- [x] **Tests:** filter/search/featured/categories/paginate (13) + routing render tests (3) — 44 total
+- [x] **Tests:** filter/search/featured/categories/paginate (13) + routing render tests (3) - 44 total
 - [x] Verified: typecheck, tests, lint, build all pass
 - [ ] Commit: "feat: blog list + detail"
 
 ---
 
-## Sprint 5 — Persistence, Drafts & Mock API
+## Sprint 5 - Persistence, Drafts & Mock API
 
 **Goal:** Content survives and the app talks to a (mock) backend.
 **DoD:** Create/edit/delete posts, save drafts, autosave; all via MSW-mocked endpoints.
@@ -136,38 +136,38 @@ Check items off as you go so progress is always visible.
 - [x] Draft persistence to `localStorage` (`localDraft.ts`) restored on new-post bootstrap
 - [x] Debounced autosave (`AutoSave`) for unsaved new posts
 - [x] Publish vs. draft status: Save draft / Publish / Delete in the toolbar + status badge; edit existing via `/admin/:slug`; Edit link on the detail page; sonner toasts
-- [x] **Tests:** service layer against MSW (6) — list/get/404/create+derive/update-keeps-slug/delete; localStorage + MSW wired into test setup (51 total)
+- [x] **Tests:** service layer against MSW (6) - list/get/404/create+derive/update-keeps-slug/delete; localStorage + MSW wired into test setup (51 total)
 - [x] Verified: typecheck, tests, lint, build all pass
 - [ ] Commit: "feat: persistence + mock API"
 
 ---
 
-## Sprint 6 — Interactive Block (Quiz) — Addon Proof
+## Sprint 6 - Interactive Block (Quiz) - Addon Proof
 
 **Goal:** Prove the registry handles interactive, stateful blocks.
 **DoD:** A Quiz block authored in the editor and *playable* (answer → score) in the read view.
 
 - [x] Quiz block type + schema already defined in Sprint 1 (questions, options, correctIndex)
 - [x] Quiz `Edit` panel: add/remove questions, add/remove options, set correct answer (radio)
-- [x] Quiz `Render` (read view): interactive — radio answers, Submit (gated until all answered), score + per-option correct/wrong, Try again
+- [x] Quiz `Render` (read view): interactive - radio answers, Submit (gated until all answered), score + per-option correct/wrong, Try again
 - [x] `scoreQuiz` pure scoring helper
 - [x] Registered as `kind: 'interactive'`
-- [x] **Tests:** scoreQuiz (3) + interactive render test (answer→submit→score) — 54 total
+- [x] **Tests:** scoreQuiz (3) + interactive render test (answer→submit→score) - 54 total
 - [x] Test infra: polyfilled `getClientRects` (TipTap/jsdom) to clear an unhandled error
 - [x] Verified: typecheck, tests, lint, build all pass
 - [ ] Commit: "feat: interactive quiz block"
 
 ---
 
-## Sprint 7 — Polish & Hardening
+## Sprint 7 - Polish & Hardening
 
 **Goal:** Production-feel pass.
 **DoD:** Accessible, responsive, performant, lint-clean, meaningful tests green.
 
 - [x] Accessibility: skip-link + semantic landmarks; aria-labels on icon buttons; keyboard dnd sensor + move up/down fallback; `aria-pressed`/`aria-current` on toggles/selection
-- [x] Performance: lazy block editors (`React.lazy`) + route-level code splitting — TipTap/editor load only on `/admin`; the >500 kB chunk warning is gone
+- [x] Performance: lazy block editors (`React.lazy`) + route-level code splitting - TipTap/editor load only on `/admin`; the >500 kB chunk warning is gone
 - [x] Empty/error states: `ErrorBoundary` around routes; list/detail/editor loading + empty + not-found states
-- [~] (Optional) Playwright — skipped; behavior covered by RTL interaction tests
+- [~] (Optional) Playwright - skipped; behavior covered by RTL interaction tests
 - [x] README with run instructions, architecture overview, and "add a new block" guide
 - [x] Final lint + test pass (54 tests, typecheck, lint, build)
 - [ ] Commit: "chore: polish + docs"

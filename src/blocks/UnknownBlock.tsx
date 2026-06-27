@@ -1,7 +1,4 @@
-/**
- * Fallback for block types that aren't in the registry (unknown, or a known
- * type not yet implemented). Keeps the renderer crash-proof and forward-compatible.
- */
+// Fallback for block types not in the registry, so the renderer doesn't crash.
 export function UnknownBlock({ type }: { type: string }) {
   return (
     <div

@@ -9,10 +9,8 @@ interface ImageUploadFieldProps {
   onChange: (src: string) => void
 }
 
-/**
- * Mock-friendly image "upload": turns the chosen file into an in-memory object
- * URL (no backend, no DB). Object URLs don't survive a refresh — fine for a demo.
- */
+// Turns the chosen file into an in-memory object URL (no backend/storage).
+// Note: object URLs are lost on refresh.
 export function ImageUploadField({ label, value, onChange }: ImageUploadFieldProps) {
   const inputRef = useRef<HTMLInputElement>(null)
   const id = useId()

@@ -128,7 +128,7 @@ export const useEditorStore = create<EditorState>()(
         }),
 
       duplicateBlock: (id) => {
-        // Clone from committed state — immer drafts are Proxies and can't be structuredClone'd.
+        // clone from committed state; immer drafts are Proxies and can't be structuredClone'd
         const blocks = get().document.blocks
         const index = blocks.findIndex((b) => b.id === id)
         if (index === -1) return

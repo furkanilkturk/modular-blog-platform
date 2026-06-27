@@ -13,7 +13,7 @@ export function QuizBlockRender({ data }: { data: QuizBlockData }) {
   if (data.questions.length === 0) {
     return (
       <div className="rounded-lg border border-dashed p-6 text-center text-sm text-muted-foreground">
-        Quiz — add questions in the panel.
+        Quiz: add questions in the panel.
       </div>
     )
   }

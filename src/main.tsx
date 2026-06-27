@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import './index.css'
 import App from './App.tsx'
 
-/** This case study has no real backend — MSW is the API in every environment. */
+// No real backend in this project; MSW serves as the API in every environment.
 async function enableMocking() {
   const { worker } = await import('./mocks/browser')
   return worker.start({ onUnhandledRequest: 'bypass' })

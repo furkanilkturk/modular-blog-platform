@@ -8,10 +8,8 @@ import type {
   TextBlockData,
 } from './types'
 
-/**
- * Runtime validation that mirrors types.ts. Each data schema is checked against
- * its TypeScript interface via `satisfies`, so the two can't silently drift.
- */
+// Runtime validation mirroring types.ts. Each schema is `satisfies`-checked
+// against its TS interface so the two stay in sync.
 
 export const textBlockDataSchema = z.object({
   html: z.string(),

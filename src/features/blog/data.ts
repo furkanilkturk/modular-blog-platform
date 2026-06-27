@@ -116,7 +116,7 @@ export const posts: BlogPost[] = [
     id: '6',
     slug: 'building-an-interactive-quiz-block',
     title: 'Building an Interactive Quiz Block',
-    excerpt: 'Proving the registry handles stateful, interactive addons — not just static content.',
+    excerpt: 'Proving the registry handles stateful, interactive addons, not just static content.',
     category: 'Product',
     coverImage: 'https://picsum.photos/seed/quiz-cover/1200/630',
     author: 'Barbara Liskov',

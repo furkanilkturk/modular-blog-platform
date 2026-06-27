@@ -8,7 +8,7 @@ export function QuoteBlockRender({ data }: { data: QuoteBlockData }) {
       </p>
       {data.attribution ? (
         <footer className="mt-2 text-sm text-muted-foreground">
-          — {data.attribution}
+          {data.attribution}
         </footer>
       ) : null}
     </blockquote>
