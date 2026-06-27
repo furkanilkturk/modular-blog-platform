@@ -25,6 +25,16 @@ frontend engineering — not just feature coverage.
 - **Typed end-to-end** — TypeScript + Zod schemas that are compile-time checked against
   the TS types, so validation and types can't drift.
 
+## Screenshots
+
+**Building a post (editor):**
+
+![Editor demo](docs/screenshots/demo.gif)
+
+| Blog list | Post detail | Editor |
+| --- | --- | --- |
+| ![Blog list](docs/screenshots/blog-list.png) | ![Post detail](docs/screenshots/blog-detail.png) | ![Editor](docs/screenshots/editor.png) |
+
 ## Tech stack
 
 React 19 · TypeScript · Vite · Tailwind CSS v4 · shadcn/ui · Zustand (+ zundo, Immer) ·
