@@ -17,7 +17,7 @@ function byNewest<T extends { publishedAt: string }>(a: T, b: T) {
 }
 
 export function BlogListPage() {
-  const { posts, isLoading } = usePosts()
+  const { posts, isLoading, error } = usePosts()
   const [query, setQuery] = useState('')
   const [category, setCategory] = useState<string | null>(null)
   const [page, setPage] = useState(1)
@@ -82,7 +82,11 @@ export function BlogListPage() {
         </div>
       </div>
 
-      {isLoading ? (
+      {error ? (
+        <p className="py-12 text-center text-destructive">
+          Couldn’t load posts. Please refresh and try again.
+        </p>
+      ) : isLoading ? (
         <div className="grid gap-6 sm:grid-cols-2">
           {Array.from({ length: 4 }).map((_, i) => (
             <PostCardSkeleton key={i} />

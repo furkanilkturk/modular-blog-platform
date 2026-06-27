@@ -1,32 +1,60 @@
 import { useEffect, useState } from 'react'
-import { posts as allPosts, getPostBySlug } from './data'
+import { getPost, listPosts } from './api'
 import type { BlogPost } from './types'
 
-/**
- * Async-shaped reads over the local fixtures. The loading flag exists so the
- * UI can show skeletons; Sprint 5 replaces the bodies with MSW-backed fetches
- * without changing these signatures.
- */
+/** Loads all posts from the (MSW-mocked) API. */
 export function usePosts() {
   const [posts, setPosts] = useState<BlogPost[]>([])
   const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState<Error | null>(null)
 
   useEffect(() => {
-    setPosts(allPosts)
-    setIsLoading(false)
+    let active = true
+    setIsLoading(true)
+    listPosts()
+      .then((data) => {
+        if (active) {
+          setPosts(data)
+          setError(null)
+        }
+      })
+      .catch((e: Error) => active && setError(e))
+      .finally(() => active && setIsLoading(false))
+    return () => {
+      active = false
+    }
   }, [])
 
-  return { posts, isLoading }
+  return { posts, isLoading, error }
 }
 
+/** Loads a single post by slug; `post` is null when not found. */
 export function usePost(slug: string | undefined) {
   const [post, setPost] = useState<BlogPost | null>(null)
   const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState<Error | null>(null)
 
   useEffect(() => {
-    setPost(slug ? (getPostBySlug(slug) ?? null) : null)
-    setIsLoading(false)
+    if (!slug) {
+      setPost(null)
+      setIsLoading(false)
+      return
+    }
+    let active = true
+    setIsLoading(true)
+    getPost(slug)
+      .then((data) => {
+        if (active) {
+          setPost(data)
+          setError(null)
+        }
+      })
+      .catch((e: Error) => active && setError(e))
+      .finally(() => active && setIsLoading(false))
+    return () => {
+      active = false
+    }
   }, [slug])
 
-  return { post, isLoading }
+  return { post, isLoading, error }
 }

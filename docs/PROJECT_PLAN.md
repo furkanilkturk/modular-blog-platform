@@ -130,13 +130,14 @@ Check items off as you go so progress is always visible.
 **Goal:** Content survives and the app talks to a (mock) backend.
 **DoD:** Create/edit/delete posts, save drafts, autosave; all via MSW-mocked endpoints.
 
-- [ ] Define MSW handlers: list, get, create, update, delete posts
-- [ ] Seed mock data (a few posts using multiple block types)
-- [ ] Service layer (`src/features/blog/api.ts`) wrapping fetch calls
-- [ ] Draft persistence to `localStorage`
-- [ ] Debounced autosave in the editor
-- [ ] Publish vs. draft status
-- [ ] **Tests:** service layer against MSW
+- [x] MSW handlers (`src/mocks/`): GET list, GET by slug, POST, PUT, DELETE over an in-memory db seeded from fixtures; worker started in `main.tsx`
+- [x] Server derives post metadata (slug, excerpt, cover, reading time) from the editor's title + blocks
+- [x] Service layer (`src/features/blog/api.ts`) + `usePosts`/`usePost` now fetch via the API (loading + error states)
+- [x] Draft persistence to `localStorage` (`localDraft.ts`) restored on new-post bootstrap
+- [x] Debounced autosave (`AutoSave`) for unsaved new posts
+- [x] Publish vs. draft status: Save draft / Publish / Delete in the toolbar + status badge; edit existing via `/admin/:slug`; Edit link on the detail page; sonner toasts
+- [x] **Tests:** service layer against MSW (6) — list/get/404/create+derive/update-keeps-slug/delete; localStorage + MSW wired into test setup (51 total)
+- [x] Verified: typecheck, tests, lint, build all pass
 - [ ] Commit: "feat: persistence + mock API"
 
 ---

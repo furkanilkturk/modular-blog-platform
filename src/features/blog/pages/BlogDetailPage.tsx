@@ -1,8 +1,10 @@
 import { Link, useParams } from 'react-router-dom'
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, PenLine } from 'lucide-react'
 import { DynamicRenderer } from '@/blocks'
 import { Badge } from '@/components/ui/badge'
+import { buttonVariants } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
+import { cn } from '@/lib/utils'
 import { formatDate } from '@/lib/format'
 import { usePost } from '../usePosts'
 
@@ -37,13 +39,22 @@ export function BlogDetailPage() {
 
   return (
     <article className="space-y-6">
-      <Link
-        to="/"
-        className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground"
-      >
-        <ArrowLeft className="mr-1 size-4" />
-        All posts
-      </Link>
+      <div className="flex items-center justify-between">
+        <Link
+          to="/"
+          className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground"
+        >
+          <ArrowLeft className="mr-1 size-4" />
+          All posts
+        </Link>
+        <Link
+          to={`/admin/${post.slug}`}
+          className={cn(buttonVariants({ variant: 'outline', size: 'sm' }))}
+        >
+          <PenLine className="mr-1.5 size-4" />
+          Edit
+        </Link>
+      </div>
 
       <header className="space-y-3">
         <Badge variant="secondary">{post.category}</Badge>

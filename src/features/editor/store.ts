@@ -4,13 +4,22 @@ import { immer } from 'zustand/middleware/immer'
 import { arrayMove } from '@dnd-kit/sortable'
 import { createBlock, CURRENT_DOCUMENT_VERSION } from '@/blocks'
 import type { Block, BlockType, BlogDocument } from '@/blocks'
+import type { BlogPost } from '@/features/blog/types'
 import { generateId } from '@/lib/id'
 
 export interface EditorState {
   document: BlogDocument
   selectedBlockId: string | null
+  /** Id of the post being edited; null for an unsaved new post. */
+  postId: string | null
 
   selectBlock: (id: string | null) => void
+  /** Load an existing post into the editor. */
+  loadPost: (post: BlogPost) => void
+  /** Replace the working document (e.g. restoring a local draft). */
+  loadDocument: (document: BlogDocument) => void
+  /** Start a fresh, empty post. */
+  resetToNew: () => void
   updateTitle: (title: string) => void
   addBlock: (type: BlockType, index?: number) => void
   removeBlock: (id: string) => void
@@ -61,10 +70,37 @@ export const useEditorStore = create<EditorState>()(
     immer((set, get) => ({
       document: createSeedDocument(),
       selectedBlockId: null,
+      postId: null,
 
       selectBlock: (id) =>
         set((state) => {
           state.selectedBlockId = id
+        }),
+
+      loadPost: (post) =>
+        set((state) => {
+          state.document = {
+            id: post.id,
+            version: CURRENT_DOCUMENT_VERSION,
+            title: post.title,
+            status: post.status,
+            blocks: post.blocks,
+          }
+          state.postId = post.id
+          state.selectedBlockId = null
+        }),
+
+      loadDocument: (document) =>
+        set((state) => {
+          state.document = document
+          state.selectedBlockId = null
+        }),
+
+      resetToNew: () =>
+        set((state) => {
+          state.document = createEmptyDocument()
+          state.postId = null
+          state.selectedBlockId = null
         }),
 
       updateTitle: (title) =>
