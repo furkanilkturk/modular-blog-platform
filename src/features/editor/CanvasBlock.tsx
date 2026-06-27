@@ -104,7 +104,7 @@ export function CanvasBlock({ block, index, total }: CanvasBlockProps) {
       <div className="p-4">
         {!definition ? (
           <UnknownBlock type={block.type} />
-        ) : selected && definition.InlineEdit ? (
+        ) : selected && definition.InlineEdit && !isDragging ? (
           <definition.InlineEdit
             data={block.data}
             onChange={(data) => updateBlockData(block.id, data)}

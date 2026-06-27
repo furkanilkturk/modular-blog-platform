@@ -121,25 +121,31 @@ export function DynamicRenderer({ blocks }: { blocks: Block[] }) {
 
 ## 3a. Editing model — inline vs. config (Notion + Webflow)
 
-Content is **not** typed in the right panel. A block definition can expose two
-optional editing surfaces, and provides whichever make sense:
+Content is **typed in place on the canvas**; the right panel holds the controls.
+A block definition can expose two optional editing surfaces:
 
 - **`InlineEdit`** — in-place editing on the canvas while the block is selected
-  (the Notion experience). Text uses a focused TipTap instance with a floating
-  bubble toolbar; Quote uses inline text fields.
-- **`Edit`** — right-panel config for properties that don't belong inline
-  (the Webflow experience). Image uses it for upload/alt/caption; Banner for
-  upload/button/link.
+  (the Notion experience: you type where the content lives). Text mounts a
+  focused TipTap instance; Quote uses inline text fields.
+- **`Edit`** — right-panel controls. For text this is the **formatting toolbar**
+  (bold/italic/H2/align/link), always visible while a text block is selected —
+  no floating bubble. For image/banner it's config (upload, alt, link).
 
-| Block  | InlineEdit (canvas)        | Edit (right panel)          |
-|--------|----------------------------|-----------------------------|
-| text   | TipTap + bubble toolbar    | —                           |
-| quote  | inline text + attribution  | —                           |
-| image  | —                          | upload, alt, caption        |
-| banner | —                          | upload, button text, link   |
+| Block  | InlineEdit (canvas, typing) | Edit (right panel)            |
+|--------|-----------------------------|-------------------------------|
+| text   | TipTap (type inline)        | formatting toolbar            |
+| quote  | inline text + attribution   | —                             |
+| image  | —                           | upload, alt, caption          |
+| banner | —                           | upload, button text, link     |
 
-`CanvasBlock` renders `InlineEdit` when the block is selected (else `Render`).
-`PropertyPanel` renders `Edit` if present, otherwise "edited on the canvas".
+The text formatting toolbar drives the editor via a tiny `useActiveEditor`
+store: `TextBlockInlineEdit` registers its TipTap instance on mount; the
+panel's `TextBlockEdit` reads it and issues commands. This keeps formatting
+**always visible** (no popup to collide with the panel or hunt for).
+
+`CanvasBlock` renders `InlineEdit` when the block is selected **and not being
+dragged** (a dragged block renders statically, so it never stretches or detaches
+its toolbar). `PropertyPanel` renders `Edit` if present.
 
 Text alignment is stored **in the HTML** (TipTap TextAlign, per paragraph), so
 there is no block-level `align` field.
